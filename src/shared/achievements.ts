@@ -1,4 +1,4 @@
-/** Achievement catalog — shared by server (granting) and client (display). */
+/** Achievement catalog  shared by server (granting) and client (display). */
 
 export type Achievement = {
   id: string;

@@ -90,7 +90,7 @@ export function addObstacleBodies(matter: Matter, sc: Scene): void {
     if (o.kind === 'circle') {
       matter.add.circle(o.x, o.y, o.r, { isStatic: true, restitution: 0.4, friction: 0.05 });
     } else {
-      // rect or spinner-bar — both are static angled bars
+      // rect or spinner-bar  both are static angled bars
       matter.add.rectangle(o.x, o.y, o.w, o.h, {
         isStatic: true,
         angle: o.kind === 'rect' ? ((o.angle ?? 0) * Math.PI) / 180 : 0,

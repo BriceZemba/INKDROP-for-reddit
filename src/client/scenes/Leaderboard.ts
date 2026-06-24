@@ -117,7 +117,7 @@ export class Leaderboard extends Scene {
     if (lb.rows.length === 0) {
       this.rowsLayer.add(
         this.add
-          .text(cx, 440, 'No entries yet —\nbe the first!', {
+          .text(cx, 440, 'No entries yet \nbe the first!', {
             fontFamily: FONTS.ui,
             fontSize: '30px',
             color: HEX.inkSoft,
@@ -176,7 +176,7 @@ export class Leaderboard extends Scene {
     const footer =
       lb.myRank !== null
         ? `You're #${lb.myRank} of ${lb.total}  ·  ${lb.myScore ?? 0} ${lb.unit}`
-        : `${lb.total} player${lb.total === 1 ? '' : 's'} — join the board!`;
+        : `${lb.total} player${lb.total === 1 ? '' : 's'}  join the board!`;
     this.rowsLayer.add(
       this.add
         .text(cx, WORLD_H - 80, footer, {

@@ -1,5 +1,5 @@
 /**
- * Level Forge — user-generated levels. Players author puzzles, the community
+ * Level Forge  user-generated levels. Players author puzzles, the community
  * votes, and the top-voted level is promoted to become a future daily, credited
  * to its creator. This turns contributions into the game's content engine.
  */

@@ -1,5 +1,5 @@
 /**
- * Daily "twist" modifiers — a deterministic per-day mutator that changes how a
+ * Daily "twist" modifiers  a deterministic per-day mutator that changes how a
  * puzzle plays. Shared by the client (rendering + physics) and the server
  * (replay verification) so both agree exactly.
  */
@@ -15,12 +15,12 @@ export type Modifier =
 export type ModInfo = { name: string; blurb: string; icon: string };
 
 export const MODIFIERS: Record<Modifier, ModInfo> = {
-  lowGravity: { name: 'Low Gravity', blurb: 'The ball floats — everything falls slower.', icon: '🪶' },
+  lowGravity: { name: 'Low Gravity', blurb: 'The ball floats  everything falls slower.', icon: '🪶' },
   extraInk: { name: 'Extra Ink', blurb: 'A generous ink budget today.', icon: '🌊' },
   oneStroke: { name: 'One Stroke', blurb: 'You may draw a single line. Make it count.', icon: '➰' },
-  narrowGoal: { name: 'Narrow Goal', blurb: 'A tighter target — precision required.', icon: '🎯' },
+  narrowGoal: { name: 'Narrow Goal', blurb: 'A tighter target  precision required.', icon: '🎯' },
   bouncyInk: { name: 'Bouncy Ink', blurb: 'Your ink is springy. Mind the rebound.', icon: '🏀' },
-  slipperyInk: { name: 'Slippery Ink', blurb: 'Frictionless ink — the ball really slides.', icon: '🧊' },
+  slipperyInk: { name: 'Slippery Ink', blurb: 'Frictionless ink  the ball really slides.', icon: '🧊' },
 };
 
 /** Gravity multiplier applied to the world for this modifier. */

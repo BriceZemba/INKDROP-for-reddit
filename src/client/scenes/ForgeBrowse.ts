@@ -233,7 +233,7 @@ export class ForgeBrowse extends Scene {
   private report(id: string) {
     void net
       .forgeReport(id)
-      .then((res) => showToast(res.hidden ? 'Level hidden — thanks.' : 'Reported. Thanks.'))
+      .then((res) => showToast(res.hidden ? 'Level hidden  thanks.' : 'Reported. Thanks.'))
       .catch(() => showToast('Could not report.'));
   }
 

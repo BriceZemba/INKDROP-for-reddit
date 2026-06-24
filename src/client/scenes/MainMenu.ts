@@ -17,7 +17,7 @@ export class MainMenu extends Scene {
 
   create() {
     fadeIn(this);
-    // Browsers gate audio behind a gesture — unlock on the first tap.
+    // Browsers gate audio behind a gesture  unlock on the first tap.
     this.input.once('pointerdown', () => sfx.unlock());
 
     paintPaper(this, WORLD_W, this.scale.height);
@@ -292,7 +292,7 @@ export class MainMenu extends Scene {
     if (scene.modifier) {
       const info = MODIFIERS[scene.modifier];
       this.add
-        .text(cx, cardY + 152, `${info.icon} Twist: ${info.name} — ${info.blurb}`, {
+        .text(cx, cardY + 152, `${info.icon} Twist: ${info.name}  ${info.blurb}`, {
           fontFamily: FONTS.ui,
           fontSize: '20px',
           color: HEX.ink,
@@ -316,7 +316,7 @@ export class MainMenu extends Scene {
         .setOrigin(0.5);
     }
 
-    // Buttons — daily headline + personal campaign + everything else
+    // Buttons  daily headline + personal campaign + everything else
     const playLabel = init.myBestInk !== null ? 'PLAY TODAY’S' : 'PLAY DAILY';
     new Button(this, cx, 796, playLabel, () => this.scene.start('Game'), {
       width: 380,
@@ -330,7 +330,7 @@ export class MainMenu extends Scene {
       this,
       cx,
       890,
-      done ? 'Campaign ✓ — replay' : `▶ Continue · Level ${next}`,
+      done ? 'Campaign ✓  replay' : `▶ Continue · Level ${next}`,
       () => this.scene.start('Game', { campaignLevel: next }),
       { width: 380, height: 72, color: COLORS.blue, fontSize: 28 }
     );
@@ -381,11 +381,11 @@ export class MainMenu extends Scene {
       '• A ball drops from the top.',
       '• Drag to draw ink ramps that guide it',
       '  into the glowing goal.',
-      '• You have a limited ink budget —',
+      '• You have a limited ink budget ',
       '  the less ink you use, the higher you rank.',
       '',
       '• Solve the daily puzzle to grow your streak.',
-      '• Build your own level in the Forge —',
+      '• Build your own level in the Forge ',
       '  top-voted levels become a daily puzzle!',
       '',
       'Tap anywhere to close.',

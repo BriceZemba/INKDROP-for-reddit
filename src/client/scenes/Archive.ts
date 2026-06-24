@@ -7,7 +7,7 @@ import { fadeIn } from '../ui/transition';
 import { drawScene } from '../play/engine';
 import { net } from '../net';
 
-/** Browse + replay past daily puzzles (practice mode — scores aren't recorded). */
+/** Browse + replay past daily puzzles (practice mode  scores aren't recorded). */
 export class Archive extends Scene {
   constructor() {
     super('Archive');
@@ -45,7 +45,7 @@ export class Archive extends Scene {
         loading.destroy();
         if (res.days.length === 0) {
           this.add
-            .text(cx, 480, 'No past puzzles yet —\ncheck back tomorrow!', {
+            .text(cx, 480, 'No past puzzles yet \ncheck back tomorrow!', {
               fontFamily: FONTS.ui,
               fontSize: '30px',
               color: HEX.inkSoft,

@@ -1,7 +1,7 @@
 /**
  * Server-side anti-cheat: re-simulate a submitted solution headlessly with
  * matter-js and confirm the ball can actually reach the goal. Physics can differ
- * slightly from the client, so this is a *tolerant* gate — it rejects only
+ * slightly from the client, so this is a *tolerant* gate  it rejects only
  * solutions whose ball never comes anywhere near the goal (e.g. a fabricated
  * "solve" with no real ink), and never blocks a genuine attempt.
  */

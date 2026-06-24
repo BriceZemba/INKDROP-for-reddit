@@ -1,5 +1,5 @@
 /**
- * INKDROP visual identity — cozy hand-drawn ink on warm paper.
+ * INKDROP visual identity  cozy hand-drawn ink on warm paper.
  * One accent (vermillion inkwell), restrained palette, no stock gradients.
  */
 
@@ -10,7 +10,7 @@ export const COLORS = {
   ink: 0x2b2b3a,
   inkSoft: 0x55556a,
   inkFaint: 0x8a8aa0,
-  accent: 0xe2574c, // vermillion — inkwell / goal
+  accent: 0xe2574c, // vermillion  inkwell / goal
   accentDark: 0xbf4339,
   blue: 0x3b82c4,
   gold: 0xe7a93a, // streak flame / stars
@@ -68,7 +68,7 @@ export function applyColorblind(on: boolean): void {
 }
 
 export const FONTS = {
-  /** Literary heading face — falls back gracefully across platforms. */
+  /** Literary heading face  falls back gracefully across platforms. */
   display: '"Caveat", "Bradley Hand", "Segoe Print", "Comic Sans MS", cursive',
   /** Clean UI sans. */
   ui: '"Nunito", "Segoe UI", system-ui, -apple-system, sans-serif',

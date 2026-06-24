@@ -1,6 +1,6 @@
 /**
  * Opt-in push notifications: a consensual "a new puzzle dropped" daily nudge that
- * links players straight back to today's post — the strongest re-engagement lever.
+ * links players straight back to today's post  the strongest re-engagement lever.
  * Everything is wrapped defensively so notification hiccups never break posting.
  */
 
@@ -50,7 +50,7 @@ export async function notifyNewDaily(postId: string, dayNumber: number): Promise
     if (ids.length === 0) return;
     await notifications.enqueue({
       title: 'INKDROP',
-      body: `Day ${dayNumber} just dropped — keep your streak alive! ✒️`,
+      body: `Day ${dayNumber} just dropped  keep your streak alive! ✒️`,
       recipients: ids.map((userId) => ({ userId, link: postId as T3, data: {} })),
     });
   } catch (e) {

@@ -1,5 +1,5 @@
 // Local-only stub for '@devvit/web/client' so the game can run outside Devvit
-// for visual verification. NOT shipped — only used by vite.preview.config.ts.
+// for visual verification. NOT shipped  only used by vite.preview.config.ts.
 export const navigateTo = () => {};
 export const requestExpandedMode = () => {};
 

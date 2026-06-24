@@ -41,7 +41,7 @@ export class Button extends Phaser.GameObjects.Container {
   private baseColor: number;
   private variant: 'solid' | 'ghost';
   private enabled = true;
-  /** True only between a pointerdown ON this button and its release — so a drag
+  /** True only between a pointerdown ON this button and its release  so a drag
    *  that merely ends over the button (e.g. finishing a drawn line) won't click it. */
   private pressed = false;
 
@@ -75,7 +75,7 @@ export class Button extends Phaser.GameObjects.Container {
       .setOrigin(0.5);
     this.add(this.label);
 
-    // Forgiving hit area — a little larger than the visual so a near-miss still counts.
+    // Forgiving hit area  a little larger than the visual so a near-miss still counts.
     const pad = 12;
     this.setSize(this.bw, this.bh);
     this.setInteractive(

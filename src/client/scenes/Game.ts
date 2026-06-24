@@ -34,7 +34,7 @@ import { net } from '../net';
 
 type Stroke = { flat: number[]; bodies: MatterJS.BodyType[] };
 
-/** The bottom band is reserved for controls — the puzzle never goes here. */
+/** The bottom band is reserved for controls  the puzzle never goes here. */
 const CONTROL_TOP = WORLD_H - 200;
 /** Top of the drawable play area (below the HUD). */
 const PLAY_TOP = 120;
@@ -185,7 +185,7 @@ export class Game extends Scene {
         onMessage: (m) => this.setPresence(m.count),
       });
     } catch {
-      /* realtime unavailable — heartbeat polling still updates the label */
+      /* realtime unavailable  heartbeat polling still updates the label */
     }
 
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => this.stopPresence());
@@ -322,7 +322,7 @@ export class Game extends Scene {
       this.campaignLevel != null
         ? `Level ${this.campaignLevel}  ·  “${this.sc.title}”`
         : this.testMode
-          ? 'Test play — solve it to verify'
+          ? 'Test play  solve it to verify'
           : `Day ${this.sc.dayNumber}  ·  “${this.sc.title}”`;
     this.add
       .text(WORLD_W / 2, 40, header, {
@@ -427,7 +427,7 @@ export class Game extends Scene {
         return;
       }
       if (this.strokes.length >= maxStrokes(this.sc.modifier)) {
-        this.toast.setColor(HEX.accent).setText('One stroke only — Clear to redraw.');
+        this.toast.setColor(HEX.accent).setText('One stroke only  Clear to redraw.');
         return;
       }
       this.drawing = true;
@@ -611,7 +611,7 @@ export class Game extends Scene {
       return;
     }
     if (this.time.now - this.dropStart > 14000) {
-      this.fail('Ran out of time — tweak your ramp.');
+      this.fail('Ran out of time  tweak your ramp.');
     }
   }
 

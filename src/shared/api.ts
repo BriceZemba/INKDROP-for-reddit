@@ -141,7 +141,7 @@ export type EquipResponse = {
 /** Total levels in the personal campaign. */
 export const CAMPAIGN_LEVELS = 50;
 
-/** GET /api/campaign — personal progression through the level curve. */
+/** GET /api/campaign  personal progression through the level curve. */
 export type CampaignResponse = {
   type: 'campaign';
   furthest: number; // highest level cleared (0 = none)
@@ -169,13 +169,13 @@ export type LeaderboardResponse = {
   myScore: number | null;
 };
 
-/** GET /api/archive — past daily puzzles, newest first (for practice replay). */
+/** GET /api/archive  past daily puzzles, newest first (for practice replay). */
 export type ArchiveResponse = {
   type: 'archive';
   days: Scene[];
 };
 
-/** GET /api/distribution — histogram of today's ink scores. */
+/** GET /api/distribution  histogram of today's ink scores. */
 export type DistributionResponse = {
   type: 'distribution';
   counts: number[];
@@ -237,14 +237,14 @@ export type ForgeReportResponse = {
   hidden: boolean;
 };
 
-/** GET /api/forge/ghosts?forgeId= — sampled solutions to a community level. */
+/** GET /api/forge/ghosts?forgeId=  sampled solutions to a community level. */
 export type ForgeGhostsResponse = { type: 'forge-ghosts'; ghosts: number[][][] };
 
-/** POST /api/share — posts the player's result as a comment on the current post. */
+/** POST /api/share  posts the player's result as a comment on the current post. */
 export type ShareRequest = { text: string };
 export type ShareResponse = { type: 'share'; ok: boolean };
 
-/** POST /api/presence — heartbeat; returns how many redditors are on this puzzle now. */
+/** POST /api/presence  heartbeat; returns how many redditors are on this puzzle now. */
 export type PresenceResponse = { type: 'presence'; count: number };
 
 /** Daily-reminder opt-in status. */

@@ -131,12 +131,12 @@ export async function postDailyFor(dayNumber: number, dayId: string): Promise<st
   await redis.expire(sceneMetaKey(dayId), DAY_TTL_SEC);
   await redis.zAdd(K_DAYS, { member: dayId, score: dayNumber });
 
-  const titleAuthor = scene.authorUsername ? ` — by u/${scene.authorUsername}` : '';
+  const titleAuthor = scene.authorUsername ? `  by u/${scene.authorUsername}` : '';
   const meta: PostMeta = { dayId, dayNumber, forgeId: scene.forgeId };
 
   try {
     const post = await reddit.submitCustomPost({
-      title: `INKDROP — Day ${dayNumber}: "${scene.title}"${titleAuthor}`,
+      title: `INKDROP  Day ${dayNumber}: "${scene.title}"${titleAuthor}`,
       entry: 'default',
       postData: meta as unknown as JsonObject,
     });
@@ -154,7 +154,7 @@ export async function postDailyFor(dayNumber: number, dayId: string): Promise<st
         textColor: 'light',
       });
     } catch {
-      /* flair not configured — ignore */
+      /* flair not configured  ignore */
     }
     return post.id;
   } catch (err) {
@@ -189,14 +189,14 @@ export async function postFeaturedLevel(): Promise<void> {
   const text = [
     `🏆 **Featured Level of the Week**`,
     '',
-    `**“${lvl.title}”** by u/${lvl.authorUsername} — ${lvl.votes} community votes.`,
+    `**“${lvl.title}”** by u/${lvl.authorUsername}  ${lvl.votes} community votes.`,
     '',
-    `Forge your own puzzle in the app and rally votes to be featured next week — top levels also become a daily!`,
+    `Forge your own puzzle in the app and rally votes to be featured next week  top levels also become a daily!`,
   ].join('\n');
   try {
     await reddit.submitPost({
       subredditName: context.subredditName,
-      title: `🏆 INKDROP — Featured Level: “${lvl.title}” by u/${lvl.authorUsername}`,
+      title: `🏆 INKDROP  Featured Level: “${lvl.title}” by u/${lvl.authorUsername}`,
       text,
     });
   } catch (err) {
@@ -213,7 +213,7 @@ export async function postRecapComment(dayId: string): Promise<void> {
 
   const medals = ['🥇', '🥈', '🥉', '🏅', '🏅'];
   const lines = rows.map(
-    (r, i) => `${medals[i] ?? '•'} u/${r.username} — ${r.score} ink`
+    (r, i) => `${medals[i] ?? '•'} u/${r.username}  ${r.score} ink`
   );
   const text = [
     `**INKDROP recap** ✒️ ${total} redditor${total === 1 ? '' : 's'} solved this one.`,
@@ -221,7 +221,7 @@ export async function postRecapComment(dayId: string): Promise<void> {
     'Lowest ink wins:',
     ...lines,
     '',
-    'A fresh puzzle just dropped — keep your streak alive! 🔥',
+    'A fresh puzzle just dropped  keep your streak alive! 🔥',
   ].join('\n');
 
   try {

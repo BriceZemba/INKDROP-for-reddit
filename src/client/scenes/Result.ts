@@ -160,7 +160,7 @@ export class Result extends Scene {
         panel.strokeRoundedRect(cx - w / 2 - 16, top - 30, w + 32, h + 70, 18);
 
         this.add
-          .text(cx, top - 8, 'Ink used — you vs everyone', {
+          .text(cx, top - 8, 'Ink used  you vs everyone', {
             fontFamily: FONTS.ui,
             fontSize: '22px',
             color: HEX.inkSoft,
@@ -249,7 +249,7 @@ export class Result extends Scene {
   private scorecard(r: SolveResponse, sc: PuzzleScene): string {
     return (
       `I solved INKDROP Day ${sc.dayNumber} “${sc.title}” with ${r.myBestInk} ink ` +
-      `— less than ${r.percentile}% of solvers! ${r.streak.current > 0 ? `🔥 ${r.streak.current}-day streak.` : ''} ` +
+      ` less than ${r.percentile}% of solvers! ${r.streak.current > 0 ? `🔥 ${r.streak.current}-day streak.` : ''} ` +
       `Can you use less? ✒️`
     );
   }

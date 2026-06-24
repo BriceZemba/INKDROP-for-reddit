@@ -113,7 +113,7 @@ export class Profile extends Scene {
 
     dot.setInteractive({ useHandCursor: true }).on('pointerdown', () => {
       if (!owned) {
-        this.caption.setText(`Locked — ${this.unlockText(c)}`).setColor(HEX.accent);
+        this.caption.setText(`Locked  ${this.unlockText(c)}`).setColor(HEX.accent);
         return;
       }
       this.equip(c.kind, c.id);
@@ -176,7 +176,7 @@ export class Profile extends Scene {
       icon
         .setInteractive({ useHandCursor: true })
         .on('pointerdown', () =>
-          this.caption.setText(`${a.icon} ${a.name} — ${a.desc}`).setColor(got ? HEX.green : HEX.inkSoft)
+          this.caption.setText(`${a.icon} ${a.name}  ${a.desc}`).setColor(got ? HEX.green : HEX.inkSoft)
         );
     });
   }

@@ -1,4 +1,4 @@
-# 📤 How to Submit INKDROP — Step-by-Step
+# 📤 How to Submit INKDROP  Step-by-Step
 
 This is your complete, do-this-in-order checklist to go from the code on your
 machine to a finished hackathon submission on Devpost. Budget ~45–60 minutes the
@@ -21,7 +21,7 @@ first time. Things only **you** can do (they need *your* Reddit login) are marke
 ### **[YOU]** Create a test subreddit
 1. Go to <https://www.reddit.com/submit?type=community> (or Reddit → *Create a community*).
 2. Name it something like `r/InkdropGame` (private "restricted" is fine for testing).
-3. You're automatically the moderator. Keep the name handy — you'll use it below.
+3. You're automatically the moderator. Keep the name handy  you'll use it below.
 
 ---
 
@@ -41,7 +41,7 @@ This opens a browser to authorize the Devvit CLI with your Reddit account. Appro
 ## 3. Pick a globally-unique app name
 
 Reddit app names must be **globally unique, 3–16 chars, lowercase, hyphens allowed**.
-The project ships as `inkdrop` — that exact name may be taken. If so, edit **two**
+The project ships as `inkdrop`  that exact name may be taken. If so, edit **two**
 places to the same new name (e.g. `inkdrop-daily`, `inkdrop-<yourhandle>`):
 
 - `devvit.json` → `"name": "inkdrop"`
@@ -83,7 +83,7 @@ When it plays well:
 ```bash
 npm run deploy
 ```
-This runs type-check + lint, then `devvit upload` — publishing a versioned build to
+This runs type-check + lint, then `devvit upload`  publishing a versioned build to
 Reddit (still private to you until the next step).
 
 ## 6. **[YOU]** Publish the app listing for review
@@ -92,7 +92,7 @@ Reddit (still private to you until the next step).
 npm run launch
 ```
 This runs `deploy` then `devvit publish`, submitting the app to Reddit for review so
-it gets a public **App listing** on `developer.reddit.com`. Approval can take a bit —
+it gets a public **App listing** on `developer.reddit.com`. Approval can take a bit 
 **do this early**, not at the deadline. You can keep playtesting meanwhile.
 
 Your **App listing link** will look like:
@@ -126,7 +126,7 @@ On [redditgameswithahook.devpost.com](https://redditgameswithahook.devpost.com/)
 | **Description** | See the ready-made copy in [`perspective.md`](perspective.md) → "Submission blurb". |
 | **Screenshots / video** | A 30–60s clip: feed card → draw a ramp → drop → Result/percentile → Forge. |
 | **Built with** | Devvit Web, Phaser, TypeScript, Vite, Hono, Redis. |
-| **[Optional] Dev survey** | Complete it — there's a separate **Best Feedback** prize. |
+| **[Optional] Dev survey** | Complete it  there's a separate **Best Feedback** prize. |
 
 > **Existing-project rule:** the rules allow existing projects but require significant
 > updates *during* the hackathon window. INKDROP is brand-new this window, so you're clear.

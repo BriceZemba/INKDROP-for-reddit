@@ -1,10 +1,10 @@
 /**
- * Deterministic scene generation for INKDROP — a 50-level difficulty curve.
+ * Deterministic scene generation for INKDROP  a 50-level difficulty curve.
  *
  * The same dayNumber always yields the same scene for everyone. Difficulty ramps
  * monotonically from a gentle Day 1 to a near-impossible Day 50 (and stays brutal
  * afterwards): more obstacles, a narrower goal, a tighter ink budget, longer lateral
- * travel, and harsher daily twists. Pure module — no Devvit deps — so it runs on
+ * travel, and harsher daily twists. Pure module  no Devvit deps  so it runs on
  * both client and server (incl. the anti-cheat replay).
  */
 
@@ -14,7 +14,7 @@ import type { Modifier } from './modifiers';
 /** Number of authored difficulty steps before the curve plateaus at "brutal". */
 export const MAX_LEVEL = 50;
 
-/** The puzzle never occupies the bottom band — that's reserved for controls. */
+/** The puzzle never occupies the bottom band  that's reserved for controls. */
 const GOAL_FLOOR = WORLD_H - 250;
 
 /** Small, fast, seedable PRNG (mulberry32). */

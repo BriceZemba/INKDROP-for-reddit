@@ -57,7 +57,7 @@ forge.post('/submit', async (c) => {
 
   const username = (await reddit.getCurrentUsername()) ?? 'anonymous';
   if (username === 'anonymous') return err(c, 'Log in to submit a level.', 401);
-  if (!(await allow(`forge-submit:${username}`, 10, 600))) return err(c, 'Too many submissions — take a breather.', 429);
+  if (!(await allow(`forge-submit:${username}`, 10, 600))) return err(c, 'Too many submissions  take a breather.', 429);
 
   const id = await submitLevel(username, req);
   await grant(username, ['forge-author']);

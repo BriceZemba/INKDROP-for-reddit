@@ -168,7 +168,7 @@ export class Forge extends Scene {
       o.angle = ((o.angle ?? 0) + 15) % 360;
       this.markEdited();
     } else {
-      showToast('Pegs are round — nothing to rotate.');
+      showToast('Pegs are round  nothing to rotate.');
     }
   }
 
@@ -347,7 +347,7 @@ export class Forge extends Scene {
 
   private submit() {
     if (!this.solved) {
-      showToast('Press Test and solve your level first — proves it’s beatable!');
+      showToast('Press Test and solve your level first  proves it’s beatable!');
       return;
     }
     const problem = this.validate();

@@ -1,5 +1,5 @@
 /**
- * Personal campaign progression — each player advances through the 1..50 level
+ * Personal campaign progression  each player advances through the 1..50 level
  * curve at their own pace. Progress is server-side so it follows the user across
  * devices. Levels can only be cleared in sequence (you can't jump to 50), which
  * is enough anti-skip protection for a solo track.

@@ -31,7 +31,7 @@ export async function heartbeat(postId: string, userId: string): Promise<number>
   try {
     await realtime.send(presenceChannel(postId), { count });
   } catch {
-    /* realtime optional — count still returned */
+    /* realtime optional  count still returned */
   }
   return count;
 }

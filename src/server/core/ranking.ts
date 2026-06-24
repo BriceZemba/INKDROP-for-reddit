@@ -1,5 +1,5 @@
 /**
- * Scoring, leaderboard, ghost storage, and streaks — all backed by Redis.
+ * Scoring, leaderboard, ghost storage, and streaks  all backed by Redis.
  * Lower ink is better, so sorted-set rank 0 == best solution of the day.
  */
 

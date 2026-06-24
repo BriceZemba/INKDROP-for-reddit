@@ -1,5 +1,5 @@
 /**
- * Cosmetic catalog — ink colours, ball skins, and trail tints players unlock
+ * Cosmetic catalog  ink colours, ball skins, and trail tints players unlock
  * through streaks, achievements, and total solves. Shared by client (rendering)
  * and server (unlock logic).
  */

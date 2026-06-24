@@ -103,10 +103,10 @@ api.post('/solve', async (c) => {
   }
 
   // Anti-cheat: replay the drawing. Reject only trivial fakes (almost no ink AND
-  // the ball never gets near the goal in simulation) — never a real attempt.
+  // the ball never gets near the goal in simulation)  never a real attempt.
   const verdict = verifySolution(scene, strokes);
   if (!verdict.ok && inkUsed < 100) {
-    return err(c, 'That solution didn’t reach the goal — give it another go!');
+    return err(c, 'That solution didn’t reach the goal  give it another go!');
   }
 
   const outcome = await recordSolve(meta.dayId, username, inkUsed, strokes);
@@ -126,7 +126,7 @@ api.post('/solve', async (c) => {
           text: `🔥 ${streak.current}-day streak`,
         });
       } catch {
-        /* flair not configured — ignore */
+        /* flair not configured  ignore */
       }
     }
   }

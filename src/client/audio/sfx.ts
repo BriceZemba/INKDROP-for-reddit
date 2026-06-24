@@ -1,5 +1,5 @@
 /**
- * Procedural sound — synthesized with the Web Audio API so the game ships with
+ * Procedural sound  synthesized with the Web Audio API so the game ships with
  * zero audio asset files (and zero licensing concerns). All sounds are tiny
  * envelopes over oscillators / filtered noise.
  *
@@ -137,7 +137,7 @@ class Sfx {
     this.tone(300, 0.07, 'triangle', 0.16, 0, 200);
   }
 
-  /** Pen scratch while drawing — throttled, intensity by pointer speed. */
+  /** Pen scratch while drawing  throttled, intensity by pointer speed. */
   scratch(speed: number): void {
     const now = performance.now();
     if (now - this.lastScratch < 38) return;
@@ -162,7 +162,7 @@ class Sfx {
     [523, 659, 784, 1046].forEach((f, i) => this.tone(f, 0.22, 'triangle', 0.26, i * 0.07));
   }
 
-  /** Missed — soft descending buzz. */
+  /** Missed  soft descending buzz. */
   fail(): void {
     this.tone(300, 0.32, 'sawtooth', 0.18, 0, 120);
   }
@@ -172,7 +172,7 @@ class Sfx {
     [659, 988, 1318].forEach((f, i) => this.tone(f, 0.3, 'sine', 0.24, i * 0.09));
   }
 
-  /** Victory jingle — a bright rising fanfare with a final flourish. */
+  /** Victory jingle  a bright rising fanfare with a final flourish. */
   victory(): void {
     const notes: [number, number, number][] = [
       [523, 0.0, 0.16],
@@ -185,7 +185,7 @@ class Sfx {
     this.tone(784, 0.55, 'sine', 0.14, 0.36); // soft harmony
   }
 
-  /** Defeat jingle — a slow descending "sad trombone" phrase. */
+  /** Defeat jingle  a slow descending "sad trombone" phrase. */
   defeat(): void {
     this.tone(392, 0.22, 'sawtooth', 0.2, 0.0);
     this.tone(349, 0.22, 'sawtooth', 0.2, 0.2);
