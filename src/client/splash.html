@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="splash.css" />
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width, height=device-height, user-scalable=0"
+    />
+    <title>INKDROP</title>
+  </head>
+  <body class="app">
+    <div class="card">
+      <div class="drop"></div>
+      <h1 class="title">INKDROP</h1>
+      <p class="tag">Draw the line. Guide the drop.</p>
+      <div class="stats">
+        <span id="day" class="day">Daily puzzle</span>
+        <span id="solved" class="solved"></span>
+      </div>
+      <div id="streak" class="streak"></div>
+      <button class="play" id="play">Play today’s drop</button>
+    </div>
+    <script type="module" src="splash.ts" defer></script>
+  </body>
+</html>

@@ -1,0 +1,60 @@
+{
+  "$schema": "https://developers.reddit.com/schema/config-file.v1.json",
+  "name": "inkdrop-game",
+  "permissions": {
+    "redis": true,
+    "realtime": true,
+    "reddit": {
+      "scope": "user"
+    }
+  },
+  "post": {
+    "dir": "dist/client",
+    "entrypoints": {
+      "default": {
+        "inline": true,
+        "entry": "splash.html"
+      },
+      "game": {
+        "entry": "game.html"
+      }
+    }
+  },
+  "server": {
+    "dir": "dist/server",
+    "entry": "index.cjs"
+  },
+  "menu": {
+    "items": [
+      {
+        "label": "INKDROP: Post today's puzzle",
+        "description": "Create the daily INKDROP puzzle post",
+        "location": "subreddit",
+        "forUserType": "moderator",
+        "endpoint": "/internal/menu/post-create"
+      },
+      {
+        "label": "INKDROP: Advance to next day (test)",
+        "description": "Force a daily rollover and post the next puzzle",
+        "location": "subreddit",
+        "forUserType": "moderator",
+        "endpoint": "/internal/menu/force-rollover"
+      }
+    ]
+  },
+  "scheduler": {
+    "tasks": {
+      "dailyRollover": {
+        "endpoint": "/internal/scheduler/daily-rollover",
+        "cron": "0 12 * * *"
+      }
+    }
+  },
+  "triggers": {
+    "onAppInstall": "/internal/triggers/on-app-install"
+  },
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite build --watch"
+  }
+}
