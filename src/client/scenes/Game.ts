@@ -11,10 +11,10 @@ import {
   type Scene as PuzzleScene,
 } from '../../shared/api';
 import type { PresenceMessage } from '../../shared/api';
-import { generateScene } from '../../shared/scenes';
+import { sceneForLevel } from '../../shared/scenes';
 import { colorOf } from '../../shared/cosmetics';
 import { MODIFIERS, gravityScale, inkStrokePhysics, maxStrokes } from '../../shared/modifiers';
-import { simplifyStroke } from '../../shared/geometry';
+import { simplifyStroke, pointToSegmentDist } from '../../shared/geometry';
 import { prefs } from '../ui/prefs';
 import { connectRealtime, disconnectRealtime } from '@devvit/web/client';
 import { COLORS, HEX, FONTS } from '../style/theme';
@@ -22,6 +22,7 @@ import { Button, InkMeter, paintPaper, starRow } from '../ui/widgets';
 import { fadeIn } from '../ui/transition';
 import { sfx, haptic } from '../audio/sfx';
 import {
+  INK_THICKNESS,
   SAMPLE_DIST,
   addObstacleBodies,
   addWalls,
@@ -96,7 +97,7 @@ export class Game extends Scene {
       this.trailColor = colorOf(init.equipped.trail, COLORS.blue);
     }
     if (this.campaignLevel != null) {
-      this.sc = generateScene(this.campaignLevel, `campaign-${this.campaignLevel}`);
+      this.sc = sceneForLevel(this.campaignLevel, `campaign-${this.campaignLevel}`);
     } else if (data?.testScene) {
       this.sc = data.testScene;
     } else {
@@ -375,7 +376,7 @@ export class Game extends Scene {
     this.eraseBtn = tool(86, '🧽 Erase', () => this.toggleErase());
     tool(258, 'Clear', () => this.clearInk());
 
-    // drop (also fires automatically a moment after you finish drawing)
+    // drop the ball (the player taps this when their ramp is ready)
     this.dropBtn = new Button(this, WORLD_W / 2, WORLD_H - 64, 'DROP', () => this.drop(), {
       width: 320,
       height: 86,
@@ -440,9 +441,13 @@ export class Game extends Scene {
       const ly = this.current[this.current.length - 1]!;
       const d = Math.hypot(p.x - lx, p.y - ly);
       if (d < SAMPLE_DIST) return;
-      // stop drawing this stroke if it would exceed the ink budget
+      // stop drawing this stroke if it would exceed the ink budget — tell the player
+      // why the line stopped following their finger (otherwise it feels like a bug)
       if (this.committedInk + strokeLength(this.current) + d > this.sc.inkBudget) {
         this.endStroke();
+        this.toast.setColor(HEX.accent).setText('Out of ink! Undo or Clear to free some up.');
+        sfx.place();
+        haptic(20);
         return;
       }
       this.current.push(Math.round(p.x), Math.round(p.y));
@@ -520,10 +525,13 @@ export class Game extends Scene {
   /** Erase the stroke nearest the tap (within a threshold). */
   private eraseAt(x: number, y: number) {
     let bestI = -1;
-    let bestD = 30;
+    // Allow a tap roughly within half the ink thickness plus a finger-friendly margin.
+    let bestD = INK_THICKNESS / 2 + 24;
     this.strokes.forEach((s, i) => {
-      for (let k = 0; k < s.flat.length; k += 2) {
-        const d = Math.hypot(s.flat[k]! - x, s.flat[k + 1]! - y);
+      // measure distance to each segment, not just the sampled vertices, so tapping
+      // the middle of a long straight line still registers a hit
+      for (let k = 2; k < s.flat.length; k += 2) {
+        const d = pointToSegmentDist(x, y, s.flat[k - 2]!, s.flat[k - 1]!, s.flat[k]!, s.flat[k + 1]!);
         if (d < bestD) {
           bestD = d;
           bestI = i;

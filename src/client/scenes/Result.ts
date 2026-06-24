@@ -211,11 +211,15 @@ export class Result extends Scene {
 
     sfx.reward();
     const cx = WORLD_W / 2;
-    const y = 800;
+    // sit clear below the histogram band (which extends to ~760) and above the buttons
+    const y = 890;
     const c = this.add.container(cx, y).setDepth(7).setScale(0.6).setAlpha(0);
     const w = 560;
     const h = 56 + labels.length * 34;
     const bg = this.add.graphics();
+    // opaque paper fill so the ghost board behind it never bleeds through the text
+    bg.fillStyle(COLORS.paper, 1);
+    bg.fillRoundedRect(-w / 2, -h / 2, w, h, 18);
     bg.fillStyle(COLORS.gold, 0.16);
     bg.fillRoundedRect(-w / 2, -h / 2, w, h, 18);
     bg.lineStyle(3, COLORS.gold, 1);

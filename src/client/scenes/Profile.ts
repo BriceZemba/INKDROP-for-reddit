@@ -85,16 +85,23 @@ export class Profile extends Scene {
 
   private row(label: string, kind: CosmeticKind, y: number) {
     const items = COSMETICS.filter((c) => c.kind === kind);
-    this.add.text(60, y - 34, label, {
-      fontFamily: FONTS.ui,
-      fontSize: '26px',
-      color: HEX.inkSoft,
-      fontStyle: '800',
-    });
-    const gap = (WORLD_W - 120) / items.length;
+    const swatchY = y + 20;
+    // label sits in a reserved left lane, vertically centred with the swatches
+    this.add
+      .text(36, swatchY, label, {
+        fontFamily: FONTS.ui,
+        fontSize: '26px',
+        color: HEX.inkSoft,
+        fontStyle: '800',
+      })
+      .setOrigin(0, 0.5);
+    // swatches occupy the lane to the right of the label so nothing overlaps
+    const left = 150;
+    const right = WORLD_W - 40;
+    const gap = (right - left) / items.length;
     items.forEach((c, i) => {
-      const x = 60 + gap * (i + 0.5);
-      this.swatch(c, x, y + 20);
+      const x = left + gap * (i + 0.5);
+      this.swatch(c, x, swatchY);
     });
   }
 

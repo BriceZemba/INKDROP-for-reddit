@@ -39,6 +39,13 @@
         "location": "subreddit",
         "forUserType": "moderator",
         "endpoint": "/internal/menu/force-rollover"
+      },
+      {
+        "label": "INKDROP: Seed demo data",
+        "description": "Fill the sub with sample solvers, ghosts, and community levels",
+        "location": "subreddit",
+        "forUserType": "moderator",
+        "endpoint": "/internal/menu/seed-demo"
       }
     ]
   },

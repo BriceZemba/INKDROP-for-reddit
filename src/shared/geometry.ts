@@ -4,7 +4,19 @@
  * before storing/replaying) cuts body count and payload size with no visible loss.
  */
 
-function perpDist(px: number, py: number, ax: number, ay: number, bx: number, by: number): number {
+/**
+ * Distance from point (px,py) to the segment a→b (clamped to the segment, so it
+ * measures to the nearest point on the line, not the infinite line). Shared by
+ * stroke simplification and erase hit-testing.
+ */
+export function pointToSegmentDist(
+  px: number,
+  py: number,
+  ax: number,
+  ay: number,
+  bx: number,
+  by: number
+): number {
   const dx = bx - ax;
   const dy = by - ay;
   const len2 = dx * dx + dy * dy;
@@ -32,7 +44,7 @@ export function simplifyStroke(flat: number[], epsilon = 3): number[] {
     const bx = flat[e * 2]!;
     const by = flat[e * 2 + 1]!;
     for (let i = s + 1; i < e; i++) {
-      const d = perpDist(flat[i * 2]!, flat[i * 2 + 1]!, ax, ay, bx, by);
+      const d = pointToSegmentDist(flat[i * 2]!, flat[i * 2 + 1]!, ax, ay, bx, by);
       if (d > maxD) {
         maxD = d;
         idx = i;

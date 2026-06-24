@@ -10,7 +10,7 @@
 import { redis, reddit, context } from '@devvit/web/server';
 import type { JsonObject } from '@devvit/web/shared';
 import { type Scene, type ForgeLevel } from '../../shared/api';
-import { generateScene } from '../../shared/scenes';
+import { sceneForLevel } from '../../shared/scenes';
 import { loadLevel, popQueuedLevel, markLevelUsed, getTopLevel } from './forge';
 import { leaderboard, solvedCount } from './ranking';
 
@@ -95,7 +95,7 @@ export async function resolveScene(meta: PostMeta): Promise<Scene> {
     const level = await loadLevel(meta.forgeId);
     if (level) return sceneFromForge(level, meta.dayNumber, meta.dayId);
   }
-  return generateScene(meta.dayNumber, meta.dayId);
+  return sceneForLevel(meta.dayNumber, meta.dayId);
 }
 
 /** Read the current post's stamped metadata (set at creation time). */
@@ -124,7 +124,7 @@ export async function postDailyFor(dayNumber: number, dayId: string): Promise<st
     scene = sceneFromForge(queued, dayNumber, dayId);
     await markLevelUsed(queued.id);
   } else {
-    scene = generateScene(dayNumber, dayId);
+    scene = sceneForLevel(dayNumber, dayId);
   }
 
   await redis.set(sceneMetaKey(dayId), JSON.stringify(scene));

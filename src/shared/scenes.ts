@@ -10,6 +10,7 @@
 
 import { WORLD_W, WORLD_H, type Obstacle, type Scene } from './api';
 import type { Modifier } from './modifiers';
+import { authoredScene } from './authored';
 
 /** Number of authored difficulty steps before the curve plateaus at "brutal". */
 export const MAX_LEVEL = 50;
@@ -80,6 +81,15 @@ function chooseModifier(t: number, rnd: () => number): Modifier | undefined {
   const hard: Modifier[] = ['narrowGoal', 'oneStroke', 'slipperyInk'];
   const pool = rnd() < t ? hard : easy;
   return pool[Math.floor(rnd() * pool.length)]!;
+}
+
+/**
+ * The scene actually played for a given level/day: a hand-authored opening level
+ * when one exists, otherwise the procedural curve. This is the entry point the
+ * Daily and Campaign should use; `generateScene` stays the pure procedural source.
+ */
+export function sceneForLevel(dayNumber: number, dayId: string): Scene {
+  return authoredScene(dayNumber, dayId) ?? generateScene(dayNumber, dayId);
 }
 
 /**
