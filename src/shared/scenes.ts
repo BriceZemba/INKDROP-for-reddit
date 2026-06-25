@@ -58,6 +58,10 @@ const TITLES = [
   'Bank Shot', 'Patience', 'The Detour', 'Needle', 'Crosswind',
   'The Maze', 'Pinball', 'Hairpin', 'The Drop Zone', 'Tightrope',
   'No Margin', 'The Sieve', 'Last Inch', 'Brinkmanship', 'The Vise',
+  'Freefall', 'The Labyrinth', 'Pinwheel', 'Knife Edge', 'The Cascade',
+  'Spillway', 'Deadfall', 'The Crucible', 'Razorline', 'Plumb Line',
+  'The Reckoning', 'Gravity Well', 'The Spindle', 'Chokepoint', 'Whiplash',
+  'The Abyss', 'Inkfall', 'Serpentine', 'Terminal Velocity', 'The Final Drop',
 ];
 
 function clamp(v: number, lo: number, hi: number): number {
@@ -81,11 +85,18 @@ function difficulty(dayNumber: number): number {
   return clamp((band + within * 0.35) / bandsTotal, 0, 1);
 }
 
-/** Pick a twist; harsher modifiers grow more likely with difficulty. */
+/**
+ * Pick a twist; harsher modifiers grow more likely with difficulty.
+ * Only modifiers that can't make a *random* dense layout unsolvable are used here:
+ * `oneStroke` and `slipperyInk` are reserved for hand-authored levels (where the
+ * solution is verified), because on a procedurally generated obstacle field they
+ * can be literally impossible  and in the sequential Campaign that hard-blocks
+ * all progress.
+ */
 function chooseModifier(t: number, rnd: () => number): Modifier | undefined {
   if (rnd() > t * 0.75) return undefined; // rare early, common late
   const easy: Modifier[] = ['extraInk', 'lowGravity', 'bouncyInk'];
-  const hard: Modifier[] = ['narrowGoal', 'oneStroke', 'slipperyInk'];
+  const hard: Modifier[] = ['narrowGoal', 'bouncyInk'];
   const pool = rnd() < t ? hard : easy;
   return pool[Math.floor(rnd() * pool.length)]!;
 }
@@ -123,12 +134,12 @@ export function generateScene(dayNumber: number, dayId: string): Scene {
   const goal = {
     x: Math.round(goalX),
     y: Math.round(rng(GOAL_FLOOR - 110, GOAL_FLOOR)),
-    w: Math.round(lerp(200, 64, t)),
-    h: Math.round(lerp(96, 70, t)),
+    w: Math.round(lerp(200, 78, t)),
+    h: Math.round(lerp(96, 72, t)),
   };
 
   const obstacles: Obstacle[] = [];
-  const count = dayNumber <= 1 ? 0 : Math.round(lerp(1, 10, t));
+  const count = dayNumber <= 1 ? 0 : Math.round(lerp(1, 8, t));
 
   if (count > 0) {
     // A blocker ledge just below the ball so a straight drop won't simply work.
@@ -174,7 +185,7 @@ export function generateScene(dayNumber: number, dayId: string): Scene {
 
   const dist = Math.hypot(goal.x - ball.x, goal.y - ball.y);
   const par = Math.round(dist * lerp(1.12, 1.0, t));
-  const inkBudget = Math.round(clamp(dist * lerp(1.9, 1.1, t), 600, 1900));
+  const inkBudget = Math.round(clamp(dist * lerp(1.95, 1.22, t), 600, 1900));
 
   const scene: Scene = {
     dayId,

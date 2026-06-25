@@ -2,7 +2,6 @@ import { Scene } from 'phaser';
 import * as Phaser from 'phaser';
 import { WORLD_W, CAMPAIGN_LEVELS } from '../../shared/api';
 import type { InitResponse } from '../../shared/api';
-import { MODIFIERS } from '../../shared/modifiers';
 import { COLORS, HEX, FONTS } from '../style/theme';
 import { Button, paintPaper } from '../ui/widgets';
 import { fadeIn } from '../ui/transition';
@@ -292,20 +291,7 @@ export class MainMenu extends Scene {
       })
       .setOrigin(0.5);
 
-    // Today's twist
-    if (scene.modifier) {
-      const info = MODIFIERS[scene.modifier];
-      this.add
-        .text(cx, cardY + 152, `${info.icon} Twist: ${info.name}  ${info.blurb}`, {
-          fontFamily: FONTS.ui,
-          fontSize: '20px',
-          color: HEX.ink,
-          fontStyle: '700',
-          align: 'center',
-          wordWrap: { width: 600 },
-        })
-        .setOrigin(0.5);
-    }
+    // (The daily "twist" is shown in-game as a badge, not here  keeps the menu clean.)
 
     // Personal best line
     if (init.myBestInk !== null) {
