@@ -229,6 +229,9 @@ export class MainMenu extends Scene {
         fontFamily: FONTS.display,
         fontSize: '120px',
         color: HEX.ink,
+        // Caveat is a script face  pad the text bounds so Phaser doesn't clip the
+        // flourish on the final glyph (otherwise the "P" renders cut off like an "F").
+        padding: { x: 24, y: 12 },
       })
       .setOrigin(0.5);
 
@@ -246,8 +249,9 @@ export class MainMenu extends Scene {
     const cx = WORLD_W / 2;
     const { scene } = init;
 
-    // Day card
-    const cardY = 600;
+    // Day card  pulled up so the personal-best + twist lines below it have room
+    // to sit clear of the PLAY button.
+    const cardY = 560;
     const card = this.add.graphics();
     card.fillStyle(COLORS.paperEdge, 0.7);
     card.fillRoundedRect(cx - 320, cardY - 70, 640, 150, 22);

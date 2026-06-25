@@ -54,8 +54,8 @@ export const AUTHORED: AuthoredLevel[] = [
     ball: { x: 180, y: 180, r: R },
     goal: { x: 620, y: 845, w: 175, h: 105 },
     obstacles: [{ kind: 'circle', x: 400, y: 505, r: 42 }],
-    inkBudget: 1250,
-    par: 900,
+    inkBudget: 1150,
+    par: 880,
     bonuses: [{ x: 470, y: 360, r: 30 }],
   },
   // 4  cross the board: two staggered ledges
@@ -67,8 +67,8 @@ export const AUTHORED: AuthoredLevel[] = [
       { kind: 'rect', x: 470, y: 430, w: 175, h: 22, angle: -12 },
       { kind: 'rect', x: 300, y: 645, w: 175, h: 22, angle: 12 },
     ],
-    inkBudget: 1250,
-    par: 920,
+    inkBudget: 1130,
+    par: 880,
   },
   // 5  narrower goal, single peg in the lane
   {
@@ -76,8 +76,8 @@ export const AUTHORED: AuthoredLevel[] = [
     ball: { x: 200, y: 180, r: R },
     goal: { x: 610, y: 855, w: 130, h: 100 },
     obstacles: [{ kind: 'circle', x: 430, y: 525, r: 46 }],
-    inkBudget: 1200,
-    par: 900,
+    inkBudget: 1060,
+    par: 860,
   },
   // 6  a wall across the middle: ramp over it
   {
@@ -85,8 +85,8 @@ export const AUTHORED: AuthoredLevel[] = [
     ball: { x: 160, y: 180, r: R },
     goal: { x: 640, y: 860, w: 150, h: 100 },
     obstacles: [{ kind: 'rect', x: 410, y: 560, w: 300, h: 22, angle: 0 }],
-    inkBudget: 1250,
-    par: 950,
+    inkBudget: 1120,
+    par: 900,
   },
   // 7  gentle low-gravity twist: a floatier drop
   {
@@ -94,8 +94,8 @@ export const AUTHORED: AuthoredLevel[] = [
     ball: { x: 620, y: 180, r: R },
     goal: { x: 190, y: 860, w: 160, h: 100 },
     obstacles: [{ kind: 'circle', x: 420, y: 520, r: 44 }],
-    inkBudget: 1300,
-    par: 950,
+    inkBudget: 1160,
+    par: 900,
     modifier: 'lowGravity',
     bonuses: [{ x: 330, y: 380, r: 30 }],
   },
@@ -108,8 +108,8 @@ export const AUTHORED: AuthoredLevel[] = [
       { kind: 'rect', x: 330, y: 470, w: 185, h: 22, angle: 16 },
       { kind: 'rect', x: 520, y: 655, w: 185, h: 22, angle: -14 },
     ],
-    inkBudget: 1200,
-    par: 920,
+    inkBudget: 1070,
+    par: 880,
   },
   // 9  a side wall plus a peg force a committed detour
   {
@@ -120,8 +120,8 @@ export const AUTHORED: AuthoredLevel[] = [
       { kind: 'rect', x: 500, y: 500, w: 280, h: 22, angle: 0 },
       { kind: 'circle', x: 300, y: 650, r: 40 },
     ],
-    inkBudget: 1150,
-    par: 880,
+    inkBudget: 1020,
+    par: 840,
   },
   // 10  bouncy ink: timing the rebound
   {
@@ -129,33 +129,33 @@ export const AUTHORED: AuthoredLevel[] = [
     ball: { x: 200, y: 180, r: R },
     goal: { x: 620, y: 860, w: 150, h: 100 },
     obstacles: [{ kind: 'circle', x: 410, y: 540, r: 46 }],
-    inkBudget: 1300,
-    par: 980,
+    inkBudget: 1150,
+    par: 920,
     modifier: 'bouncyInk',
   },
   // 11  cross-board with a ledge + peg, tighter budget
   {
     title: 'Hairpin',
     ball: { x: 630, y: 180, r: R },
-    goal: { x: 170, y: 860, w: 130, h: 95 },
+    goal: { x: 170, y: 860, w: 118, h: 95 },
     obstacles: [
       { kind: 'rect', x: 470, y: 440, w: 180, h: 22, angle: -14 },
       { kind: 'circle', x: 330, y: 635, r: 42 },
     ],
-    inkBudget: 1150,
-    par: 940,
+    inkBudget: 1030,
+    par: 880,
   },
   // 12  small goal, two ledges  the graduation puzzle before procedural takes over
   {
     title: 'Needle',
     ball: { x: 180, y: 180, r: R },
-    goal: { x: 620, y: 865, w: 110, h: 95 },
+    goal: { x: 620, y: 865, w: 100, h: 92 },
     obstacles: [
       { kind: 'rect', x: 360, y: 480, w: 200, h: 22, angle: 14 },
       { kind: 'rect', x: 520, y: 665, w: 180, h: 22, angle: -12 },
     ],
-    inkBudget: 1100,
-    par: 930,
+    inkBudget: 1000,
+    par: 860,
   },
 ];
 

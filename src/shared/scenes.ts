@@ -68,10 +68,17 @@ function lerp(a: number, b: number, t: number): number {
   return a + (b - a) * t;
 }
 
-/** 0 (easiest) → 1 (brutal); plateaus at 1 past MAX_LEVEL. */
+/**
+ * 0 (easiest) → 1 (brutal); plateaus at 1 past MAX_LEVEL.
+ * Climbs in deliberate tiers: a sharp step every 5 levels with a gentler ramp
+ * inside each tier, so every 5th level lands as a real difficulty jump.
+ */
 function difficulty(dayNumber: number): number {
   const lvl = Math.min(MAX_LEVEL, Math.max(1, dayNumber));
-  return (lvl - 1) / (MAX_LEVEL - 1);
+  const band = Math.floor((lvl - 1) / 5); // which 5-level tier (0-based)
+  const bandsTotal = Math.ceil(MAX_LEVEL / 5) - 1; // tiers above the first
+  const within = ((lvl - 1) % 5) / 5; // 0..0.8 progress inside the tier
+  return clamp((band + within * 0.35) / bandsTotal, 0, 1);
 }
 
 /** Pick a twist; harsher modifiers grow more likely with difficulty. */
@@ -116,12 +123,12 @@ export function generateScene(dayNumber: number, dayId: string): Scene {
   const goal = {
     x: Math.round(goalX),
     y: Math.round(rng(GOAL_FLOOR - 110, GOAL_FLOOR)),
-    w: Math.round(lerp(190, 72, t)),
-    h: Math.round(lerp(96, 72, t)),
+    w: Math.round(lerp(200, 64, t)),
+    h: Math.round(lerp(96, 70, t)),
   };
 
   const obstacles: Obstacle[] = [];
-  const count = dayNumber <= 1 ? 0 : Math.round(lerp(1, 8, t));
+  const count = dayNumber <= 1 ? 0 : Math.round(lerp(1, 10, t));
 
   if (count > 0) {
     // A blocker ledge just below the ball so a straight drop won't simply work.
@@ -167,7 +174,7 @@ export function generateScene(dayNumber: number, dayId: string): Scene {
 
   const dist = Math.hypot(goal.x - ball.x, goal.y - ball.y);
   const par = Math.round(dist * lerp(1.12, 1.0, t));
-  const inkBudget = Math.round(clamp(dist * lerp(1.95, 1.12, t), 600, 1900));
+  const inkBudget = Math.round(clamp(dist * lerp(1.9, 1.1, t), 600, 1900));
 
   const scene: Scene = {
     dayId,

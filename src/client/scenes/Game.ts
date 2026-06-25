@@ -688,7 +688,14 @@ export class Game extends Scene {
         this.tweens.add({ targets: this.ballGfx, scaleX: 1.35, scaleY: 0.7, duration: 120, yoyo: true });
       }
     }
-    this.toast.setColor(HEX.green).setText(this.testMode ? 'Solvable! ✅' : 'Solved! ✒️');
+    // Show the win flourish centered just below the goal (where the action ended),
+    // not in the fixed control-band slot  clamped so it never enters the button band.
+    const flourishY = Math.min(this.sc.goal.y + this.sc.goal.h / 2 + 36, CONTROL_TOP - 14);
+    this.toast
+      .setPosition(this.sc.goal.x, flourishY)
+      .setDepth(8)
+      .setColor(HEX.green)
+      .setText(this.testMode ? 'Solvable! ✅' : 'Solved! ✒️');
 
     const inkUsed = inkOfStrokes(this.strokes.map((s) => s.flat));
 

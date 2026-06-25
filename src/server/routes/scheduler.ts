@@ -5,11 +5,12 @@ import {
   dayNumberForDayId,
   ensureTodayPosted,
   getLastPostedDayId,
+  getPostIdForDay,
   postFeaturedLevel,
   postRecapComment,
 } from '../core/daily';
 import { weekOf } from '../core/ranking';
-import { notifyNewDaily, showDailyBadge } from '../core/notify';
+import { notifyNewDailyOnce, showDailyBadge } from '../core/notify';
 
 export const scheduler = new Hono();
 
@@ -29,13 +30,17 @@ scheduler.post('/daily-rollover', async (c) => {
       if (weekOf(newDay) !== weekOf(prevDay)) await postFeaturedLevel();
     }
 
-    if (newPostId) {
+    // Notify for today's post once, whether the rollover created it or it already
+    // existed (e.g. created by the install trigger) so opted-in players still get nudged.
+    const postId = newPostId ?? (await getPostIdForDay(today));
+    let notified = false;
+    if (postId) {
       const dayNum = await currentDayNumber();
-      await notifyNewDaily(newPostId, dayNum);
-      await showDailyBadge(newPostId);
+      notified = await notifyNewDailyOnce(postId, dayNum, today);
+      await showDailyBadge(postId);
     }
 
-    return c.json({ status: 'success', posted: newPostId ?? 'noop' }, 200);
+    return c.json({ status: 'success', posted: newPostId ?? 'noop', notified }, 200);
   } catch (error) {
     console.error(`Daily rollover failed: ${error}`);
     return c.json({ status: 'error' }, 400);

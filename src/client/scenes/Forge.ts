@@ -193,14 +193,16 @@ export class Forge extends Scene {
 
   private buildActions() {
     const y = WORLD_H - 70;
-    new Button(this, WORLD_W / 2 - 230, y, 'Test', () => this.test(), {
-      width: 200,
-      height: 78,
+    // Keep a wide gap between the two so a finger aiming at Test can't land on
+    // Submit (their forgiving hit areas used to sit only ~6px apart).
+    new Button(this, 175, y, 'Test', () => this.test(), {
+      width: 230,
+      height: 80,
       variant: 'ghost',
       fontSize: 28,
     });
-    this.submitBtn = new Button(this, WORLD_W / 2 + 60, y, 'Submit level', () => this.submit(), {
-      width: 320,
+    this.submitBtn = new Button(this, WORLD_W - 215, y, 'Submit level', () => this.submit(), {
+      width: 330,
       height: 84,
       fontSize: 30,
     });

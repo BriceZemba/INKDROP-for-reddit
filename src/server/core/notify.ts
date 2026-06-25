@@ -4,10 +4,12 @@
  * Everything is wrapped defensively so notification hiccups never break posting.
  */
 
-import { notifications, context } from '@devvit/web/server';
+import { notifications, context, redis } from '@devvit/web/server';
 
 type T2 = `t2_${string}`;
 type T3 = `t3_${string}`;
+
+const K_NOTIFIED = 'notify:lastDayId';
 
 export async function optIn(): Promise<boolean> {
   try {
@@ -56,6 +58,23 @@ export async function notifyNewDaily(postId: string, dayNumber: number): Promise
   } catch (e) {
     console.error('notifyNewDaily failed:', e);
   }
+}
+
+/**
+ * Notify for a given day at most once  so the daily nudge still goes out even if
+ * the post was created outside the rollover (e.g. by the install trigger), and a
+ * re-run of the rollover never double-notifies. Returns true if it sent.
+ */
+export async function notifyNewDailyOnce(
+  postId: string,
+  dayNumber: number,
+  dayId: string
+): Promise<boolean> {
+  const last = await redis.get(K_NOTIFIED);
+  if (last === dayId) return false; // already notified for this day
+  await redis.set(K_NOTIFIED, dayId);
+  await notifyNewDaily(postId, dayNumber);
+  return true;
 }
 
 /** Surface the new post with a game badge in the feed (best-effort). */

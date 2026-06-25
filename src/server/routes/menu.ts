@@ -2,7 +2,13 @@ import { Hono } from 'hono';
 import type { UiResponse } from '@devvit/web/shared';
 import { context } from '@devvit/web/server';
 import { createPost } from '../core/post';
-import { forceNextDay, getLastPostedDayId, postRecapComment } from '../core/daily';
+import {
+  dayNumberForDayId,
+  forceNextDay,
+  getLastPostedDayId,
+  postRecapComment,
+} from '../core/daily';
+import { notifyNewDaily, showDailyBadge } from '../core/notify';
 import { seedDemo } from '../core/seed';
 
 export const menu = new Hono();
@@ -45,6 +51,12 @@ menu.post('/force-rollover', async (c) => {
     const postId = await forceNextDay();
     if (prev) await postRecapComment(prev);
     if (!postId) throw new Error('no post id');
+    // Fire the daily push for the newly posted day so mods can test notifications.
+    const newDayId = await getLastPostedDayId();
+    if (newDayId) {
+      await notifyNewDaily(postId, await dayNumberForDayId(newDayId));
+      await showDailyBadge(postId);
+    }
     return c.json<UiResponse>({ navigateTo: postUrl(postId) }, 200);
   } catch (error) {
     console.error(`Error advancing day: ${error}`);

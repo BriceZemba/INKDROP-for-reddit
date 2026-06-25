@@ -235,6 +235,11 @@ export async function getLastPostedDayId(): Promise<string | null> {
   return (await redis.get(K_LAST_POSTED)) ?? null;
 }
 
+/** The post id for a given day, if one was created. */
+export async function getPostIdForDay(dayId: string): Promise<string | null> {
+  return (await redis.get(postIdKey(dayId))) ?? null;
+}
+
 /** Ensure today's post exists; returns the post id if one was created. */
 export async function ensureTodayPosted(): Promise<string | null> {
   const dayId = await currentDayId();

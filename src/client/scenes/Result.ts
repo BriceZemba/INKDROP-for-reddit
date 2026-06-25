@@ -33,14 +33,16 @@ export class Result extends Scene {
     fadeIn(this);
     paintPaper(this, WORLD_W, WORLD_H);
 
-    // ---- Ghost board (lower half): the puzzle with everyone's lines ----
+    // ---- Ghost board (lower half): a soft replay watermark of the puzzle with
+    // everyone's lines. Kept subtle so that with few/no ghosts it reads as a faint
+    // backdrop rather than a stray shape floating under the result card.
     const board = this.add.graphics().setDepth(0);
-    board.setAlpha(0.85);
+    board.setAlpha(0.4);
     drawScene(board, sc);
 
-    // your line, bold
+    // your line  visible but soft, so it doesn't look like stray UI
     const mine = this.add.graphics().setDepth(2);
-    for (const s of strokes) drawInkStroke(mine, s, COLORS.accent, 12, 1);
+    for (const s of strokes) drawInkStroke(mine, s, COLORS.accent, 8, 0.6);
 
     // fetch + animate ghost lines fading in one by one
     void net
@@ -62,7 +64,7 @@ export class Result extends Scene {
     card.lineStyle(4, COLORS.ink, 0.9);
     card.strokeRoundedRect(cx - 360, 90, 720, 470, 26);
 
-    const heading = r.firstSolve ? 'Solved!' : 'New best!';
+    const heading = r.firstSolve ? 'Solved' : 'New best';
     this.add
       .text(cx, 160, heading, { fontFamily: FONTS.display, fontSize: '88px', color: HEX.ink })
       .setOrigin(0.5)
